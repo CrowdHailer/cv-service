@@ -5,4 +5,8 @@ class Github
 
   attr_reader :username
 
+  def stats_uri
+    "https://api.github.com/users/#{username}"
+  end
+
 end
