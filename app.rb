@@ -12,6 +12,7 @@ class AppController < Sinatra::Base
     new_params = { username: params[:username] }
     github = Github.new(new_params)
     github.populate_attributes
-    github.stats_uri
+    return github.cv_plain if params[:format] == 'plain'
+    github.cv_html
   end
 end

@@ -7,6 +7,7 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
 gem 'awesome_print'
+gem 'redcarpet'
 
 group :test, :development do
   gem 'rspec'

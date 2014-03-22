@@ -32,9 +32,9 @@ describe Github do
     end
 
     it 'should call for cv' do
-      expect(user).to receive(:fetch_json).with(STUB_PATHS[:user_cv_readme])
+      # expect(user).to receive(:fetch_json).with(STUB_PATHS[:user_cv_readme])
       user.populate_attributes
-      user.fetch_cv
+      ap user.cv_plain
     end
 
   end

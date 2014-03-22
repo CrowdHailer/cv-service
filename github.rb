@@ -1,6 +1,8 @@
 require 'data_mapper'
 require 'open-uri'
 require 'json'
+require 'base64'
+require 'redcarpet'
 
 env = ENV['RACK_ENV'] || 'development'
 db = ENV['DATABASE_URL'] || "postgres://@localhost/github_cv_#{env}"
@@ -20,6 +22,16 @@ class Github
     # repos = fetch_json repos_url
     # repo = repos.find { |r| r[:name] == 'CV' }
     self.cv_url = "https://api.github.com/repos/#{username}/#{'CV'}/readme"
+  end
+
+  def cv_plain
+    encoded = fetch_cv[:content]
+    Base64.decode64(encoded)
+  end
+
+  def cv_html
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    markdown.render(cv_plain)
   end
 
   def fetch_cv
