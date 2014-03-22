@@ -6,7 +6,7 @@ describe Github do
   let(:empty_user) { Github.new }
 
   before(:each) do
-    stub_request(:any, 'https://api.github.com/users/CrowdHailer')
+    stub_request(:any, STUB_PATHS[:github_user_profile])
       .to_return(File.new('spec/fixtures/github_user_profile.txt'))
   end
 

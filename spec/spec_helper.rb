@@ -7,6 +7,6 @@ require 'rack/test'
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
 
-stub_paths = {
+STUB_PATHS = {
   github_user_profile: 'https://api.github.com/users/CrowdHailer'
 }
