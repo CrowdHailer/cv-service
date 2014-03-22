@@ -11,11 +11,11 @@ class Github
   include DataMapper::Resource
   property :id,     Serial
   property :username,  String
-  property :stats_uri,  String
-  validates_presence_of :username, :stats_uri
+  property :repos_url,  String
+  validates_presence_of :username, :repos_url, :cv_url
 
   def populate_attributes
-    self.stats_uri = "https://api.github.com/users/#{username}"
+    self.repos_uri = "https://api.github.com/users/#{username}/repos"
     fetch_json stats_uri
   end
 
