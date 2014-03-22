@@ -2,9 +2,11 @@ require 'data_mapper'
 require 'open-uri'
 require 'json'
 
-db = ENV['DATABASE_URL'] || "postgres://@localhost/github_cv_#{ENV['RACK_ENV']}"
+env = ENV['RACK_ENV'] || 'development'
+db = ENV['DATABASE_URL'] || "postgres://@localhost/github_cv_#{env}"
 DataMapper.setup(:default, db)
 
+# github user data
 class Github
   include DataMapper::Resource
   property :id,     Serial
@@ -17,7 +19,7 @@ class Github
     fetch_json stats_uri
   end
 
-  def fetch_json uri
+  def fetch_json(uri)
     raw_data = open(uri).read
     JSON.parse(raw_data, symbolize_names: true)
   end

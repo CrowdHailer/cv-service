@@ -2,8 +2,7 @@ require 'sinatra'
 require 'awesome_print'
 require './github'
 
-env = ENV['RACK_ENV'] || 'development'
-
+# Sinatra router
 class AppController < Sinatra::Base
   get '/' do
     'Hello World'
