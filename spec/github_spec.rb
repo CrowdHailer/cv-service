@@ -20,6 +20,7 @@ describe Github do
   end
 
   it 'should return a users api uri' do
+    user.populate_attributes
     expect(user.stats_uri).to eq('https://api.github.com/users/CrowdHailer')
   end
 end
