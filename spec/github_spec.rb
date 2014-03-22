@@ -13,7 +13,6 @@ describe Github do
   it 'should be initialized with a username' do
     expect(user.username).to eq('CrowdHailer')
     expect(user).not_to be_valid
-    ap ENV['RACK_ENV']
   end
 
   it 'should require a username' do

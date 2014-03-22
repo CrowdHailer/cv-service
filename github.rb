@@ -18,9 +18,7 @@ class Github
 
   def fetch_json uri
     raw_data = open(uri).read
-    out = JSON.parse(raw_data, :symbolize_names => true)
-    ap out
-    out
+    JSON.parse(raw_data, :symbolize_names => true)
   end
 
 end
