@@ -6,11 +6,11 @@ gem 'sinatra'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
+gem 'awesome_print'
 
 group :test, :development do
   gem 'rspec'
   gem 'rack-test'
-  gem 'awesome_print'
 end
 
 group :test do
