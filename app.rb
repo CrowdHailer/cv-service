@@ -9,8 +9,8 @@ class AppController < Sinatra::Base
     'Hello World'
   end
 
-  get '/:username.?:format?' do 
-    new_params = {username: params[:username]}
+  get '/:username.?:format?' do
+    new_params = { username: params[:username] }
     github = Github.new(new_params)
     github.populate_attributes
     github.stats_uri
