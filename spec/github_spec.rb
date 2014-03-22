@@ -21,6 +21,12 @@ describe Github do
 
   it 'should return a users api uri' do
     user.populate_attributes
+    expect(user).to be_valid
     expect(user.stats_uri).to eq('https://api.github.com/users/CrowdHailer')
+  end
+
+  it 'should call github api for stats when populating data'do
+    expect(user).to receive(:fetch_json).with('https://api.github.com/users/CrowdHailer')
+    user.populate_attributes
   end
 end
