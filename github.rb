@@ -6,7 +6,9 @@ class Github
   include DataMapper::Resource
   property :id,     Serial # Serial means that it will be auto-incremented for every record
   property :username,  String
-  validates_presence_of :username
+  property :stats_uri,  String
+  validates_presence_of :username, :stats_uri
+
   # def initialize username
   #   @username = username
   # end

@@ -11,6 +11,12 @@ describe Github do
 
   it 'should require a username' do
     expect(empty_user).not_to be_valid
+    expect(empty_user.errors.on(:username)).to eq([])
+  end
+
+  it 'should require a users stats uri' do
+    expect(empty_user).not_to be_valid
+    expect(empty_user.errors.on(:stats_uri)).to eq([])
   end
 
   it 'should return a users api uri' do
