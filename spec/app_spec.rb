@@ -1,9 +1,3 @@
-ENV['RACK_ENV'] = 'test'
-
-require './app'
-require 'rspec'
-require 'rack/test'
-
 describe 'The HelloWorld App' do
   include Rack::Test::Methods
 
