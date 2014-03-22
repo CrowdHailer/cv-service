@@ -1,7 +1,7 @@
 require './github'
 
 describe Github do
-  let (:user) { Github.new('CrowdHailer') }
+  let (:user) { Github.new(username: 'CrowdHailer') }
 
   it 'should be initialized with a username' do
     expect(user.username).to eq('CrowdHailer')
