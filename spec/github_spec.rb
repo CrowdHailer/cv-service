@@ -4,8 +4,10 @@ require './github'
 describe Github do
 
   before(:each) do
-    stub_request(:any, STUB_PATHS[:github_user_profile])
-      .to_return(File.new('spec/fixtures/github_user_profile.txt'))
+    STUB_PATHS.each do |k, path|
+      stub_request(:any, path)
+        .to_return(File.new("spec/fixtures/#{k}.txt"))
+    end
   end
 
   context 'Unpopulated github user' do
@@ -22,6 +24,17 @@ describe Github do
     let(:user) { Github.new(username: 'CrowdHailer') }
     it 'should be created invalid' do
       expect(user).not_to be_valid
+    end
+
+    it 'should generate repos_url' do
+      user.populate_attributes
+      expect(user.cv_url).to eq(STUB_PATHS[:user_cv_readme])
+    end
+
+    it 'should call for cv' do
+      expect(user).to receive(:fetch_json).with(STUB_PATHS[:user_cv_readme])
+      user.populate_attributes
+      user.fetch_cv
     end
 
   end
