@@ -2,8 +2,13 @@ require 'spec_helper'
 require './github'
 
 describe Github do
-  let (:user) { Github.new(username: 'CrowdHailer') }
-  let (:empty_user) { Github.new }
+  let(:user) { Github.new(username: 'CrowdHailer') }
+  let(:empty_user) { Github.new }
+
+  before(:each) do
+    stub_request(:any, 'https://api.github.com/users/CrowdHailer')
+      .to_return(File.new('spec/fixtures/github_user_profile.txt'))
+  end
 
   it 'should be initialized with a username' do
     expect(user.username).to eq('CrowdHailer')
@@ -28,7 +33,8 @@ describe Github do
   end
 
   it 'should call github api for stats when populating data'do
-    expect(user).to receive(:fetch_json).with('https://api.github.com/users/CrowdHailer')
+    expect(user).to receive(:fetch_json)
+      .with('https://api.github.com/users/CrowdHailer')
     user.populate_attributes
   end
 end
