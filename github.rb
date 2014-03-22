@@ -2,7 +2,7 @@ require 'data_mapper'
 require 'open-uri'
 require 'json'
 
-DataMapper.setup(:default, "postgres://@localhost/github_cv_#{ENV['RACK_ENV']}")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://@localhost/github_cv_#{ENV['RACK_ENV']}")
 
 class Github
   include DataMapper::Resource
