@@ -6,7 +6,7 @@ require './github'
 # Sinatra router
 class AppController < Sinatra::Base
   after do
-  headers({ 'X-Frame-Options' => 'ALLOW-FROM http://gitcv.herokuapp.com' })
+  headers({ 'X-Frame-Options' => 'ALLOW-FROM http://ma-student-directory.herokuapp.com/' })
   end
   get '/' do
     'Hello World'
