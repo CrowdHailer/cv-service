@@ -2,8 +2,12 @@ require 'sinatra'
 require 'awesome_print'
 require './github'
 
+
 # Sinatra router
 class AppController < Sinatra::Base
+  after do
+  headers({ 'X-Frame-Options' => 'ALLOW-FROM http://gitcv.herokuapp.com' })
+  end
   get '/' do
     'Hello World'
   end
