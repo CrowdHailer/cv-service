@@ -9,7 +9,11 @@ describe 'The HelloWorld App' do
 
   before(:each) do
     stub_request(:any, 'https://api.github.com/users/CrowdHailer')
-      .to_return(File.new('spec/fixtures/github_user_profile.txt'))
+      .to_return(File.new('spec/fixtures/user_details.txt'))
+    stub_request(:any, 'https://api.github.com/users/CrowdHailer/repos')
+      .to_return(File.new('spec/fixtures/user_repos.txt'))
+    stub_request(:any, 'https://api.github.com/repos/CrowdHailer/CV/readme')
+      .to_return(File.new('spec/fixtures/user_cv_readme.txt'))
   end
 
   it 'says hello' do
@@ -21,6 +25,5 @@ describe 'The HelloWorld App' do
   it 'should return json data' do
     get '/CrowdHailer.json'
     expect(last_response).to be_ok
-    expect(last_response.body).to eq('https://api.github.com/users/CrowdHailer')
   end
 end
