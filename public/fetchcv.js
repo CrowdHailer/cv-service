@@ -1,4 +1,4 @@
 console.log('hello');
-$.get('/', function(data) {
+$.get('http://www.lvh.me:5000/', function(data) {
 	console.log(data);
 });
