@@ -3,4 +3,3 @@ console.log(github_path);
 $.get(github_path, function(data) {
 	$('#cv-service-container').append(data);
 });
-
