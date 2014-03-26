@@ -33,7 +33,8 @@ describe Github do
 
     it 'should call for cv' do
       user.populate_attributes
-      ap user.cv_plain
+      # ap user.cv_plain
+      ap user.cv_html
     end
 
   end

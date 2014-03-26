@@ -21,7 +21,7 @@ class Github
     self.repos_url = "https://api.github.com/users/#{username}/repos"
     repos = fetch_json repos_url
 
-    repo_names = repos.map{ |repo| repo[:name] }
+    repo_names = repos.map { |repo| repo[:name] }
     cv_name = repo_names.grep(/^(c\.{0,1}v\.{0,1}|curriculum vitae)$/i).first
     # repo = repos.find { |r| r[:name] == 'CV' }
     self.cv_url = "https://api.github.com/repos/#{username}/#{cv_name}/readme"
@@ -33,7 +33,16 @@ class Github
   end
 
   def cv_html
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+    markdown = Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      autolink: true,
+      space_after_headers: true,
+      tables: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      disable_indented_code_blocks: true,
+      strikethrough: true
+    )
     markdown.render(cv_plain)
   end
 
